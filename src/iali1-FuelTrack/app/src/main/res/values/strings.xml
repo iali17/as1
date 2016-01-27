@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">iali1-FuelTrack</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="date">What was the date</string>
+    <string name="station">What station did you use</string>
+    <string name="odometer">Enter your odometer reading</string>
+    <string name="grade">What fuel grade did you use</string>
+    <string name="amount">How much many litres of fuel</string>
+    <string name="unitCost">What was the unit cost</string>
+    <string name="add">Add new entry</string>
 </resources>
