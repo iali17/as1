@@ -1,6 +1,7 @@
 package ca.ualberta.cs.iali1.iali1_fueltrack;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -79,6 +80,11 @@ public class MyActivity extends Activity {
             // TODO Auto-generated catch block
             throw new RuntimeException();
         }
+    }
+
+    public void addButton(View view){
+        Intent intent = new Intent(this, Adding.class);
+        startActivity(intent);
     }
 
 }

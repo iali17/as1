@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="ca.ualberta.cs.iali1.iali1_fueltrack.Adding">
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/date"/>
+    <EditText
+        android:id="@+id/date"
+        android:inputType="date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg. 2016-01-18"
+        android:layout_below="@+id/dateText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/station"
+        android:id="@+id/stationTextView"
+        android:layout_below="@+id/date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/station"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg.Costco"
+        android:layout_below="@+id/stationTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/odemeterTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/odometer"
+        android:layout_below="@+id/station"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <EditText
+        android:id="@+id/odemeter"
+        android:inputType="number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg.10240.6"
+        android:layout_below="@id/odemeterTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/gradeTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/grade"
+        android:layout_below="@+id/odemeter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <EditText
+        android:id="@+id/grade"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg. Regular"
+        android:layout_below="@+id/gradeTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/unitCostTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unitCost"
+        android:layout_below="@+id/grade"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <EditText
+        android:id="@+id/unitCost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg. 66.4"
+        android:layout_below="@+id/unitCostTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/amountTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/amount"
+        android:layout_below="@+id/unitCost"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Eg. 84.364"
+        android:layout_below="@+id/amountTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:onClick="doneButton"
+        android:layout_below="@+id/amount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:onClick="cancelButton"
+        android:layout_below="@+id/done"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+</RelativeLayout>

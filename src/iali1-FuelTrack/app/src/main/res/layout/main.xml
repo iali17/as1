@@ -18,11 +18,17 @@
         android:scrollbars="vertical">
 
     </ListView>
+    <TextView
+        android:id="@+id/overallFuelCost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Cost = "/>
 
     <Button
         android:id="@+id/add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Add new entry"/>
+        android:text="Add new entry"
+        android:onClick="addButton"/>
 
 </LinearLayout>
