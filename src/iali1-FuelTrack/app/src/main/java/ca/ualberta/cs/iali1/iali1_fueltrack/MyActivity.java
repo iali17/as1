@@ -2,15 +2,10 @@ package ca.ualberta.cs.iali1.iali1_fueltrack;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,15 +31,29 @@ public class MyActivity extends Activity {
     private ArrayAdapter<Logs> adapter;
 
     private TextView totalCostPlace;
+    private int requestCode = 1;
+    private int clickedPos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Button addButton = (Button) findViewById(R.id.add);
         oldEntryLogs = (ListView) findViewById(R.id.oldLogList);
         totalCostPlace = (TextView) findViewById(R.id.overallFuelCost);
+
+        //took from http://stackoverflow.com/questions/3889994/android-list-view-on-click
+        oldEntryLogs.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView parent, View view, int position, long id){
+                requestCode = 2;
+                clickedPos = position;
+                //serialzation
+                // http://stackoverflow.com/questions/10100705/android-getserializable
+                Intent data = new Intent(MyActivity.this, Editing.class);
+                data.putExtra("toEdit",(oldLogs.get(position)));
+                startActivityForResult(data,requestCode);
+            }
+        });
 }
 
     @Override
@@ -104,9 +113,15 @@ public class MyActivity extends Activity {
     }
 
     public void addButton(View view){
-        int requestCode = 1;
+        requestCode = 1;
         Intent intent = new Intent(this, Adding.class);
         //took from http://developer.android.com/training/basics/intents/result.html
+        startActivityForResult(intent,requestCode);
+    }
+
+    public void editFields(View view){
+        requestCode = 2;
+        Intent intent = new Intent(this,Adding.class);
         startActivityForResult(intent,requestCode);
     }
 
@@ -114,22 +129,27 @@ public class MyActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         float totalCost = 0;
         if (requestCode == 1){
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 //serialzation
                 // http://stackoverflow.com/questions/10100705/android-getserializable
-                oldLogs.add((Logs)data.getSerializableExtra("data"));
-                for (int i = 0; i < oldLogs.size(); i++){
-                    float unitCost;
-                    float litres;
-                    unitCost = (oldLogs.get(i)).getUnitCost();
-                    litres = (oldLogs.get(i)).getAmount();
-                    totalCost += (unitCost * litres);
-                }
-                totalCostPlace.setText("Total Cost = " + totalCost);
-                adapter.notifyDataSetChanged();
-                saveInFile();
+                oldLogs.add((Logs) data.getSerializableExtra("data"));
+            }
+        } else if(requestCode == 2){
+            if (resultCode == RESULT_OK){
+                oldLogs.set(clickedPos, ((Logs) data.getSerializableExtra("data")));
             }
         }
+
+        for (int i = 0; i < oldLogs.size(); i++) {
+            float unitCost;
+            float litres;
+            unitCost = (oldLogs.get(i)).getUnitCost();
+            litres = (oldLogs.get(i)).getAmount();
+            totalCost += (unitCost * litres);
+        }
+        totalCostPlace.setText("Total Cost = " + totalCost);
+        adapter.notifyDataSetChanged();
+        saveInFile();
     }
 
     }

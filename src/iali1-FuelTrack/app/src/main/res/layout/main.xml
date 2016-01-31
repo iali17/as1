@@ -22,7 +22,8 @@
         android:id="@+id/overallFuelCost"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Total Cost = "/>
+        android:text="Total Cost = "
+        android:onClick="editFields"/>
 
     <Button
         android:id="@+id/add"

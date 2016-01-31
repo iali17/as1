@@ -1,7 +1,6 @@
 package ca.ualberta.cs.iali1.iali1_fueltrack;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by ALI on 2016-01-30.
@@ -33,6 +32,6 @@ public class Logs implements Serializable{
 
     @Override
     public String toString(){
-        return "Date: " +date + "\nStation: " + station + "\nOdemeter: " + odemeter + "\nFuel Grade: " + grade + "\nUnitCost: " + unitCost + "\nLiters Filled: " + amount;
+        return "Date: " +date + "\nStation: " + station + "\nOdemeter Value: " + odemeter + "\nFuel Grade: " + grade + "\nUnitCost: " + unitCost + "\nLiters Filled: " + amount;
     }
 }
