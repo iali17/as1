@@ -1,14 +1,27 @@
 package ca.ualberta.cs.iali1.iali1_fueltrack;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
-public class Adding extends AppCompatActivity {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Adding extends AppCompatActivity  {
+    public final static ArrayList<Logs> EXTRA = new ArrayList<Logs>();
+
+
+    private ArrayList<Logs> logs = new ArrayList<Logs>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,20 @@ public class Adding extends AppCompatActivity {
     }
 
     public void doneButton(View view){
+        Intent intent = new Intent();
+
+        String date = ((EditText) findViewById(R.id.date)).getText().toString();
+        String station = ((EditText)findViewById(R.id.station)).getText().toString();
+        //to get numbers from edit text
+        // http://stackoverflow.com/questions/4903515/how-do-i-return-an-int-from-edittext-android
+        int odemeter = Integer.parseInt(((EditText) findViewById(R.id.odemeter)).getText().toString());
+        String grade = ((EditText)findViewById(R.id.grade)).getText().toString();
+        float unitCost = Integer.parseInt(((EditText) findViewById(R.id.unitCost)).getText().toString());
+        float amount = Integer.parseInt(((EditText)findViewById(R.id.amount)).getText().toString());
+        Logs latestLog = new Logs(date,station,odemeter,grade,unitCost,amount);
+        //logs.add(latestLog);
+        intent.putExtra("data", latestLog);
+        setResult(Activity.RESULT_OK, intent);
         finish();
     }
 }
