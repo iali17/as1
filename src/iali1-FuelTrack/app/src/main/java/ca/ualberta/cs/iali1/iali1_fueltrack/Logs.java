@@ -12,7 +12,7 @@ public class Logs implements Serializable{
     protected String grade;
     protected float unitCost;
     protected float amount;
-
+    //makes a new log with all the specified data
     public Logs(String date, String station, float odemeter, String grade, float unitCost, float amount){
         this.date = date;
         this.station = station;
@@ -21,15 +21,16 @@ public class Logs implements Serializable{
         this.unitCost = unitCost;
         this.amount = amount;
     }
-
+    //returns the unit cost
     public float getUnitCost(){
         return unitCost;
     }
-
+    //returns the amount of fuel
     public float getAmount(){
         return amount;
     }
 
+    //when printing this gives the format.
     @Override
     public String toString(){
         return "Date: " +date + "\nStation: " + station + "\nOdemeter Value: " + odemeter + "\nFuel Grade: " + grade + "\nUnitCost: " + unitCost + "\nLiters Filled: " + amount;

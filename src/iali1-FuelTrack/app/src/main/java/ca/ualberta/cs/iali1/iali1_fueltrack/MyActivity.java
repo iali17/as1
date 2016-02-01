@@ -43,14 +43,17 @@ public class MyActivity extends Activity {
         totalCostPlace = (TextView) findViewById(R.id.overallFuelCost);
 
         //took from http://stackoverflow.com/questions/3889994/android-list-view-on-click
+        //When items in the listview are clicked
         oldEntryLogs.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parent, View view, int position, long id){
                 requestCode = 2;
                 clickedPos = position;
                 //serialzation
                 // http://stackoverflow.com/questions/10100705/android-getserializable
+                //this sends data to the editing class so that I can autofill the edittexts
                 Intent data = new Intent(MyActivity.this, Editing.class);
                 data.putExtra("toEdit",(oldLogs.get(position)));
+                //starts the activity
                 startActivityForResult(data,requestCode);
             }
         });
@@ -60,9 +63,9 @@ public class MyActivity extends Activity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        //String[] tweets = loadFromFile();
         loadFromFile();
         float totalCost = 0;
+        //Recalculates the total cost
         for (int i = 0; i < oldLogs.size(); i++){
             float unitCost;
             float litres;
@@ -71,13 +74,14 @@ public class MyActivity extends Activity {
             totalCost += (unitCost * litres);
         }
         String output = "Total Cost = " + totalCost;
-        output = String.format("%.2f", totalCost);
+        output = String.format("Total Cost = %.2f", totalCost);
         totalCostPlace.setText(output);
 
         adapter = new ArrayAdapter<Logs>(this,
                 R.layout.list_item, oldLogs);
         oldEntryLogs.setAdapter(adapter);
     }
+    //Reads from the file --taken from lonelyTwitter and changed some values
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -95,7 +99,7 @@ public class MyActivity extends Activity {
             throw new RuntimeException();
         }
     }
-
+    //Saves into the file -- taken from lonely twitter and changed some values
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, 0);
@@ -112,7 +116,7 @@ public class MyActivity extends Activity {
             throw new RuntimeException();
         }
     }
-
+    //When they click the add button a new Activity pops open to enter the values.
     public void addButton(View view){
         requestCode = 1;
         Intent intent = new Intent(this, Adding.class);
@@ -120,27 +124,27 @@ public class MyActivity extends Activity {
         startActivityForResult(intent,requestCode);
     }
 
-    public void editFields(View view){
-        requestCode = 2;
-        Intent intent = new Intent(this,Adding.class);
-        startActivityForResult(intent,requestCode);
-    }
-
+    //when they click done on either adding or editing it comes here
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         float totalCost = 0;
+        //this request code is for adding
         if (requestCode == 1){
+            //If it ran successfully
             if (resultCode == RESULT_OK) {
                 //serialzation
                 // http://stackoverflow.com/questions/10100705/android-getserializable
+                //I add the data returned into the old logs
                 oldLogs.add((Logs) data.getSerializableExtra("data"));
             }
+        //This is the request for editing
         } else if(requestCode == 2){
             if (resultCode == RESULT_OK){
+                //changes the data for the log that they wanted to edit.
                 oldLogs.set(clickedPos, ((Logs) data.getSerializableExtra("data")));
             }
         }
-
+        //Recalculates the total cost
         for (int i = 0; i < oldLogs.size(); i++) {
             float unitCost;
             float litres;
@@ -148,8 +152,9 @@ public class MyActivity extends Activity {
             litres = (oldLogs.get(i)).getAmount();
             totalCost += (unitCost * litres);
         }
+        //Prints the total cost into the place
         String output = "Total Cost = " + totalCost;
-        output = String.format("%.2f", totalCost);
+        output = String.format("Total Cost = %.2f", totalCost);
         totalCostPlace.setText(output);
         adapter.notifyDataSetChanged();
         saveInFile();

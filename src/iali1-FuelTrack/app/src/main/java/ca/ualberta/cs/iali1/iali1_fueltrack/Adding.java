@@ -50,29 +50,37 @@ public class Adding extends AppCompatActivity  {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //The cancel button just finishes the acitivity
     public void cancelButton(View view){
         finish();
     }
 
     public void doneButton(View view){
+        //starts an intent so we can return data
         Intent intent = new Intent();
-
+        //gets the data from the edit texts
         String date = ((EditText) findViewById(R.id.date)).getText().toString();
         String station = ((EditText)findViewById(R.id.station)).getText().toString();
         //to get numbers from edit text
         // http://stackoverflow.com/questions/4903515/how-do-i-return-an-int-from-edittext-android
         float odemeter = Float.parseFloat(((EditText) findViewById(R.id.odemeter)).getText().toString());
+        //Formats the string into only 1 sig dig
         odemeter = Float.parseFloat((String.format("%.1f",odemeter)));
         String grade = ((EditText)findViewById(R.id.grade)).getText().toString();
         float unitCost = Float.parseFloat(((EditText) findViewById(R.id.unitCost)).getText().toString());
+        //Formats the string into only 1 sig dig
         unitCost = Float.parseFloat((String.format("%.1f",unitCost)));
         float amount = Float.parseFloat(((EditText) findViewById(R.id.amount)).getText().toString());
+        //Formats the string into only 3 sig dig
         amount = Float.parseFloat((String.format("%.3f",amount)));
 
+        //makes a log with all the info
         Logs latestLog = new Logs(date,station,odemeter,grade,unitCost,amount);
+        //puts the data into an extra to return it
         intent.putExtra("data", latestLog);
+        //sets the result to OK
         setResult(Activity.RESULT_OK, intent);
+        //finishes the activity
         finish();
     }
 }
