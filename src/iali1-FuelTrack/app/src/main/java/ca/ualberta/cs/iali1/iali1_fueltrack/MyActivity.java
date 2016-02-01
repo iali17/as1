@@ -28,7 +28,6 @@ import java.util.ArrayList;
 public class MyActivity extends Activity {
     private static final String FILENAME = "file.sav";
     private ListView oldEntryLogs;
-    NumberFormat twoDecimal = new DecimalFormat("#0.00");
 
     private ArrayList<Logs> oldLogs = new ArrayList<Logs>();
     private ArrayAdapter<Logs> adapter;

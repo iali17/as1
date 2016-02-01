@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class Editing extends AppCompatActivity {
-    Logs oldLogs;
+    private Logs oldLogs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

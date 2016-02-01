@@ -3,10 +3,10 @@
 
     <string name="date">What was the date(yyyy-mm-dd):</string>
     <string name="station">What station did you use?</string>
-    <string name="odometer">Enter your odometer reading(Kilometers):</string>
+    <string name="odometer">Enter your odometer reading(Kilometers) to 1 decimal place:</string>
     <string name="grade">What fuel grade did you use?</string>
-    <string name="amount">How much many litres of fuel(Litres)?</string>
-    <string name="unitCost">What was the unit cost(cents/litre)?</string>
+    <string name="amount">How much many litres of fuel(Litres) to 3 decimal places?</string>
+    <string name="unitCost">What was the unit cost(cents/litre) to 1 decimal place?</string>
     <string name="add">Add new entry</string>
     <string name="title_activity_adding">New Entry</string>
 
