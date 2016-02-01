@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class Logs implements Serializable{
     protected String date;
     protected String station;
-    protected int odemeter;
+    protected float odemeter;
     protected String grade;
     protected float unitCost;
     protected float amount;
 
-    public Logs(String date, String station, int odemeter, String grade, float unitCost, float amount){
+    public Logs(String date, String station, float odemeter, String grade, float unitCost, float amount){
         this.date = date;
         this.station = station;
         this.odemeter = odemeter;

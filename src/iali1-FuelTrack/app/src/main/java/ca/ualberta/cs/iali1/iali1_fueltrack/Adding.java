@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -60,10 +62,13 @@ public class Adding extends AppCompatActivity  {
         String station = ((EditText)findViewById(R.id.station)).getText().toString();
         //to get numbers from edit text
         // http://stackoverflow.com/questions/4903515/how-do-i-return-an-int-from-edittext-android
-        int odemeter = Integer.parseInt(((EditText) findViewById(R.id.odemeter)).getText().toString());
+        float odemeter = Float.parseFloat(((EditText) findViewById(R.id.odemeter)).getText().toString());
+        odemeter = Float.parseFloat((String.format("%.1f",odemeter)));
         String grade = ((EditText)findViewById(R.id.grade)).getText().toString();
         float unitCost = Float.parseFloat(((EditText) findViewById(R.id.unitCost)).getText().toString());
-        float amount = Float.parseFloat(((EditText)findViewById(R.id.amount)).getText().toString());
+        unitCost = Float.parseFloat((String.format("%.1f",unitCost)));
+        float amount = Float.parseFloat(((EditText) findViewById(R.id.amount)).getText().toString());
+        amount = Float.parseFloat((String.format("%.3f",amount)));
 
         Logs latestLog = new Logs(date,station,odemeter,grade,unitCost,amount);
         intent.putExtra("data", latestLog);

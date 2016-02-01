@@ -21,11 +21,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class MyActivity extends Activity {
     private static final String FILENAME = "file.sav";
     private ListView oldEntryLogs;
+    NumberFormat twoDecimal = new DecimalFormat("#0.00");
 
     private ArrayList<Logs> oldLogs = new ArrayList<Logs>();
     private ArrayAdapter<Logs> adapter;
@@ -70,7 +73,9 @@ public class MyActivity extends Activity {
             litres = (oldLogs.get(i)).getAmount();
             totalCost += (unitCost * litres);
         }
-        totalCostPlace.setText("Total Cost = " + totalCost);
+        String output = "Total Cost = " + totalCost;
+        output = String.format("%.2f", totalCost);
+        totalCostPlace.setText(output);
 
         adapter = new ArrayAdapter<Logs>(this,
                 R.layout.list_item, oldLogs);
@@ -147,7 +152,9 @@ public class MyActivity extends Activity {
             litres = (oldLogs.get(i)).getAmount();
             totalCost += (unitCost * litres);
         }
-        totalCostPlace.setText("Total Cost = " + totalCost);
+        String output = "Total Cost = " + totalCost;
+        output = String.format("%.2f", totalCost);
+        totalCostPlace.setText(output);
         adapter.notifyDataSetChanged();
         saveInFile();
     }
