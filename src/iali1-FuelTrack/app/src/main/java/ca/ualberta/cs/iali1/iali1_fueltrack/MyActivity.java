@@ -21,10 +21,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-
+//Alot of the code was copied from lonely twitter activity
 public class MyActivity extends Activity {
     private static final String FILENAME = "file.sav";
     private ListView oldEntryLogs;
@@ -89,7 +87,6 @@ public class MyActivity extends Activity {
             // Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 01-19 2016
             Type listType = new TypeToken<ArrayList<Logs>>() {}.getType();
             oldLogs = gson.fromJson(in, listType);
-
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             oldLogs = new ArrayList<Logs>();
